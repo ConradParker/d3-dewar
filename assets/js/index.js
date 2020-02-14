@@ -2,35 +2,50 @@ import { createSunburst, nodeClick } from './d3/sunburst/sunburst.js';
 import dewarInfoPanel from './d3/sunburst/informationPanel.js';
 import breadcrumbs from './d3/sunburst/breadcrumbs.js';
 
-const apiUrl = `https://demo.kustodian.org/api/report/sunburst`;
+const apiUrl = `https://demo.kustodian.org/api/report/sunburst/2`;
 
 // Set up elements
-const sunburstElement = document.getElementById('sunburst');
-const breadcrumbsElement = document.getElementById('breadcrumbs');
-const infoElement = document.getElementById('info-panel');
-
-// Subscribe to the node click events from the Sunburst and Breadcrumbs
-sunburstElement.addEventListener('sunburstNodeClicked', sunburstClickEventHandler);
-breadcrumbsElement.addEventListener('breadcrumbNodeClicked', breadcrumbClickEventHandler);
-
-// Setup the page
-getSunburstDataAsync(2)
-  .then(data => { 
-    console.log(data);
-    const dewarNode = createSunburst(sunburstElement, data);
-    breadcrumbs(breadcrumbsElement, dewarNode);
-    dewarInfoPanel(infoElement, dewarNode);
-  });
+let sunburstElement;
+let breadcrumbsElement;
+let infoElement;
 
 /**
  * Fetch the data
  * @param {integer} dewarId The Id of the dewar
  */
-async function getSunburstDataAsync(dewarId) 
+async function getSunburstDataAsync() 
 {
-  let response = await fetch(`${apiUrl}/${dewarId}`);
+  let response = await fetch(apiUrl);
   let data = await response.json()
   return data;
+}
+
+/**
+ * Initialise the page
+ * @param {*} event The event
+ */
+async function initialisePageAsync(sunburstEle, breadcrumbsEle, infoEle) {
+  
+  // Set up elements
+  sunburstElement = sunburstEle;
+  breadcrumbsElement = breadcrumbsEle;
+  infoElement = infoEle;
+
+  // Subscribe to the node click events from the Sunburst and Breadcrumbs
+  sunburstElement.addEventListener('sunburstNodeClicked', sunburstClickEventHandler);
+  breadcrumbsElement.addEventListener('breadcrumbNodeClicked', breadcrumbClickEventHandler);
+
+  loadData();
+}
+
+/**
+ * Load the data into the elements
+ */
+async function loadData() {
+  const data = await getSunburstDataAsync();
+  const dewarNode = createSunburst(sunburstElement, data);
+  breadcrumbs(breadcrumbsElement, dewarNode);
+  dewarInfoPanel(infoElement, dewarNode);
 }
 
 /**
@@ -51,3 +66,6 @@ function breadcrumbClickEventHandler(event) {
   breadcrumbs(breadcrumbsElement, event.detail);
   dewarInfoPanel(infoElement, event.detail);
 }
+
+export { initialisePageAsync };
+export { loadData };

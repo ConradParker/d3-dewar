@@ -43,3 +43,15 @@ svg {
   font-size: 20px;
   margin: 15px;
 }
+
+.button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+.button:hover {
+  background-color: #999;
+}

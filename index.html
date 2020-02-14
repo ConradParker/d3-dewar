@@ -6,14 +6,24 @@
 <body>
   <div class="container">
     <h1>Kustodian Dewar Demo</h1>
+    <button id="refresh" class="button"><img src="/assets/img/refresh.png" title="Refresh" /></button>
     <div class="d3-panel">
       <div id="breadcrumbs"></div>
       <div id="sunburst"></div>
     </div>    
-    <div id="info-panel"></div>
+    <div id="info-panel"><i>Loading...</i></div>
   </div>
   <script src="assets/js/d3/d3.min.js"></script>
-  <script type="module" src="assets/js/index.js"></script>
+  <script type="module">
+    import {initialisePageAsync, loadData} from '/assets/js/index.js';
+      initialisePageAsync(
+        document.getElementById('sunburst'),
+        document.getElementById('breadcrumbs'),
+        document.getElementById('info-panel'));
+    document.getElementById('refresh').addEventListener('click', loadData);
+  </script>
+  <script>
+  </script>
 </body>
 </html>
 
