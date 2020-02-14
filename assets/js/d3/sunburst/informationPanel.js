@@ -1,5 +1,3 @@
-import * as d3 from 'd3';
-
 const itemApiUrl = 'https://demo.kustodian.org/api/item/';
 let d3Element;
 

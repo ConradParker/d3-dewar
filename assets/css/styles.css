@@ -1,17 +1,45 @@
 body {
   background-color: #666666;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #fff;
-}
-h1 {
   text-align: center;
 }
-.container {
-  /* max-width: 800px; */
+
+h1 {
+  text-shadow: 0 0 0.1em #000;
 }
-.d3-panel {
+
+/* svg elements */
+text {
+  display: inline;
+  cursor: pointer;
+  fill: #fff;
+  text-shadow: 0 0 0.2em #666666, 0 0 0.2em #666666, 0 0 0.2em #666666;
+  font-size: 14px;
+}
+path {
+  stroke: #000;
+}
+svg {
+  max-width: 700px;
+  margin: 10px;
+}
+/* End svg elements */
+
+#info-panel {  
+  margin: 1em;
+  color: #666666;
+  text-align: center;
   display: block;
-  background-color: #666666;
+  background-color: #fff;
   border-radius: 4px;
-  padding: 3px;
-  margin: 8px;
+  padding: 0.8em;
+}
+#info-panel h1 {
+  text-shadow: 0 0 0;
+}
+
+.container {
+  font-size: 20px;
+  margin: 15px;
 }

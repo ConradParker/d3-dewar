@@ -1,12 +1,11 @@
-import * as d3 from 'd3';
-import sunburstConfig from '../baseD3Config';
-import { nodeColour } from './nodeHelper';
+import sunburstConfig from '../baseD3Config.js';
+import { nodeColour } from './nodeHelper.js';
 
 const config = sunburstConfig();
 
 // Breadcrumb dimensions: width, height, spacing, width of tip/tail.
 const breadcrumbDimensions = {
-  width: 145, height: 40, space: 5, tail: 20,
+  width: 145, height: 30, space: 5, tail: 20,
 };
 
 function breadcrumbClick(element, node) {
