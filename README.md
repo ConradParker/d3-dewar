@@ -1,5 +1,5 @@
 # d3-dewar
-Front end D3 code for the Dewar
+An example of how we can show track and trace of patient information when in cryogenic storage.
 
 ![Dewar image](dewar.gif)
 
